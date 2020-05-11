@@ -14,6 +14,10 @@
             <th>メッセージ</th>
             <td>{{ $job->content }}</td>
         </tr>
+        <tr>
+            <th>ステータス</th>
+            <td>{{$job->status}}</td>
+        </tr>
     </table>
     {!! link_to_route('jobs.edit', 'このJobを編集', ['id' => $job->id], ['class' => 'btn btn-light']) !!}
     {!! Form::model($job, ['route' => ['jobs.destroy', $job->id], 'method' => 'delete']) !!}

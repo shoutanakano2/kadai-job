@@ -44,6 +44,7 @@ class JobsController extends Controller
         //
         $job=new Job;
         $job->content=$request->content;
+        $job->status=$request->status;
         $job->save();
         return redirect('/');
     }
@@ -87,6 +88,7 @@ class JobsController extends Controller
     {
         $job=Job::find($id);
         $job->content=$request->content;
+        $job->status=$request->content;
         $job->save();
         return redirect('/');
         //

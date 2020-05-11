@@ -11,6 +11,7 @@
                 <tr>
                     <th>id</th>
                     <th>JOB</th>
+                    <th>ステータス</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                 <tr>
                     <td>{!! link_to_route('jobs.show',$job->id,['id'=>$job->id]) !!}</td>
                     <td>{{ $job->content }}</td>
+                    <td>{{$job->status}}</td>
                 </tr>
                 @endforeach
             </tbody>
