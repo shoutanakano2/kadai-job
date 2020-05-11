@@ -41,6 +41,8 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'status'=>'required|max:10',]);
         //
         $job=new Job;
         $job->content=$request->content;
@@ -86,6 +88,8 @@ class JobsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'status'=>'required|max:191',]);
         $job=Job::find($id);
         $job->content=$request->content;
         $job->status=$request->content;
