@@ -13,3 +13,6 @@
 
 Route::get('/', 'JobsController@index');
 Route::resource('jobs','JobsController');
+
+Route::get('signup','Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::get('signup','Auth\RegisterController@register')->name('signup.post');
