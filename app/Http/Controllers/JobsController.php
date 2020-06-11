@@ -14,9 +14,21 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs=Job::all();
-        return view('jobs.index',[
-            'jobs'=>$jobs,]);
+        $data = [];
+        if(\Auth::check()){
+            $job=new Job;
+            $user=\Auth::user();
+            $jobs=$user->jobs;
+            $data=[
+                'job'=>$job,
+                'user'=>$user,
+                'jobs'=>$jobs,
+                ];
+        }
+        return view('welcome',$data);
+        //$jobs=Job::all();
+        //return view('jobs.index',[
+        //'jobs'=>$jobs,]);
         //
     }
 
@@ -47,6 +59,7 @@ class JobsController extends Controller
         $job=new Job;
         $job->content=$request->content;
         $job->status=$request->status;
+        $job->user_id= \Auth::user()->id;
         $job->save();
         return redirect('/');
     }
@@ -60,8 +73,13 @@ class JobsController extends Controller
     public function show($id)
     {
         $job=Job::find($id);
+        if(\Auth::id()===$job->user_id){
         return view('jobs.show',[
             'job'=>$job,]);
+        }
+        else
+        return redirect('/');
+        
         //
     }
 
@@ -75,8 +93,13 @@ class JobsController extends Controller
     {
         //
         $job=Job::find($id);
+        if(\Auth::id()===$job->user_id){
         return view('jobs.edit',[
-            'job'=>$job,]);
+            'job'=>$job,
+            ]);
+        }
+        else
+        return redirect('/');
     }
 
     /**
@@ -91,9 +114,12 @@ class JobsController extends Controller
         $this->validate($request,[
             'status'=>'required|max:191',]);
         $job=Job::find($id);
-        $job->content=$request->content;
-        $job->status=$request->content;
-        $job->save();
+    if(\Auth::id()===$job->user_id){
+            $job->content=$request->content;
+            $job->status=$request->status;
+            $job->save();
+      
+    }
         return redirect('/');
         //
     }
@@ -108,7 +134,10 @@ class JobsController extends Controller
     {
         //
         $job=Job::find($id);
-        $job->delete();
+        if(\Auth::id()===$job->user_id){
+             $job->delete();
+        }
+        else
         return redirect('/');
     }
 }

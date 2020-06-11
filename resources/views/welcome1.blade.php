@@ -93,3 +93,6 @@
         </div>
     </body>
 </html>
+
+
+                /*<li class="nav-item">{!! link_to_route('jobs.create', '新規JOBの投稿', [], ['class' => 'nav-link']) !!}</li>*/

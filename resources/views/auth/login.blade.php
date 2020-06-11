@@ -5,7 +5,7 @@
 {!! Form::open(['route'=>'login.post']) !!}
     <div>
         {!! Form::label('email','Email') !!}
-        {!! Form::email('email',old('email') !!}
+        {!! Form::email('email',old('email')) !!}
     </div>
     <div>
         {!! Form::label('password','Password') !!}

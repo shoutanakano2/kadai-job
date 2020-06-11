@@ -5,11 +5,11 @@
 {!! Form::open(['route'=>'signup.post']) !!}
     <div>
         {!! Form::label('name','Name') !!}
-        {!! Form::text('name',old('name') !!}
+        {!! Form::text('name',old('name')) !!}
     </div>
     <div>
         {!! Form::label('email','Email') !!}
-        {!! Form::email('email',old('email') !!}
+        {!! Form::email('email',old('email')) !!}
     </div>
     <div>
         {!! Form::label('password','Password') !!}
