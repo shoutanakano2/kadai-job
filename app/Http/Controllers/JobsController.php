@@ -54,6 +54,7 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'content'=>'required|max:10',
             'status'=>'required|max:10',]);
         //
         $job=new Job;
@@ -112,6 +113,7 @@ class JobsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
+            'content'=>'required|max:191',
             'status'=>'required|max:191',]);
         $job=Job::find($id);
     if(\Auth::id()===$job->user_id){
@@ -137,7 +139,6 @@ class JobsController extends Controller
         if(\Auth::id()===$job->user_id){
              $job->delete();
         }
-        else
         return redirect('/');
     }
 }

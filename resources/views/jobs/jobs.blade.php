@@ -1,7 +1,9 @@
 <ul>
     @foreach($jobs as $job)
         <li>
-
+            <div>
+                {!! link_to_route('jobs.show', $job->id, ['id' => $job->id]) !!}
+            </div>
             <div>
                 <p>{!! ($job->content) !!}</p>
             </div>
